@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import firenado.core
+import firenado.tornadoweb
 import logging
 import datetime
 import uuid
@@ -26,7 +26,7 @@ from tornado.locks import Condition
 logger = logging.getLogger(__name__)
 
 
-class PingHandler(firenado.core.TornadoHandler):
+class PingHandler(firenado.tornadoweb.TornadoHandler):
 
     def __init__(self, application, request, **kwargs):
         super(PingHandler, self).__init__(application, request, **kwargs)
@@ -42,10 +42,6 @@ class PingHandler(firenado.core.TornadoHandler):
         self.in_channel.queue_declare(exclusive=True,
                                       callback=self.on_request_queue_declared)
         yield self.condition.wait()
-<<<<<<< HEAD
-=======
-
->>>>>>> 7a769556bf68810c88840a350d4efda92a7e2794
         self.write(self.response)
 
     def on_request_queue_declared(self, response):
@@ -69,8 +65,5 @@ class PingHandler(firenado.core.TornadoHandler):
                 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             }
             self.in_channel.queue_delete(queue=self.callback_queue)
-<<<<<<< HEAD
             self.condition.notify()
-=======
-            self.condition.notify()
->>>>>>> 7a769556bf68810c88840a350d4efda92a7e2794
+

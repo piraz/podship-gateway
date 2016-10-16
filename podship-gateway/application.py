@@ -18,7 +18,7 @@ from firenado.config import load_yaml_config_file
 import firenado.tornadoweb
 
 from . import handlers
-from ..queue import RabbitMQClient
+from podship.queue import RabbitMQClient
 import os
 import logging
 
@@ -33,7 +33,8 @@ class GatewayComponent(firenado.tornadoweb.TornadoComponent):
         self.rabbitmq = {}
         self.rabbitmq['client'] = None
         self.project_root = os.path.abspath(
-                os.path.join(os.path.dirname(__file__), '..'))
+                os.path.join(os.path.dirname(__file__),
+                             "..", "..", "podship", "podship"))
 
     def get_handlers(self):
         return [

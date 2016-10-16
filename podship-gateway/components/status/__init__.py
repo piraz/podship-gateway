@@ -16,7 +16,7 @@
 
 import firenado.tornadoweb
 
-from podship.engine.components.status import handlers
+from . import handlers
 
 
 class StatusComponent(firenado.tornadoweb.TornadoComponent):
